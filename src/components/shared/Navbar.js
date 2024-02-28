@@ -31,7 +31,7 @@ const Navbar = () => {
         <Toolbar>
           {/* Homepage Icon */}
           <Box sx={{ mr: 2 }}>
-            <NavLink to="/">
+            <NavLink to="/lubna-portfolio">
               <IconButton
                 style={{
                   backgroundColor: "var(--bg-dot)",
@@ -55,7 +55,7 @@ const Navbar = () => {
           >
             {pages.map((page, index) => (
               <NavLink
-                to={`/${page}`}
+                to={`/lubna-portfolio/${page}`}
                 className={"header-link"}
                 key={index}
                 style={{ fontSize: "12.5px", marginLeft: "20px" }}
@@ -131,7 +131,7 @@ const Navbar = () => {
           >
             {pages.map((page, index) => (
               <NavLink
-                to={`/${page}`}
+                to={`/lubna-portfolio/${page}`}
                 className={"header-link"}
                 style={{
                   fontSize: "12.5px",
