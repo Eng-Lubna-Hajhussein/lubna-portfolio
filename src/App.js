@@ -27,10 +27,10 @@ function App() {
               }}
             >
               <Routes>
-                <Route path="/" element={<Home/>} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/portfolio" element={<Portfolio/>} />
+                <Route path="/lubna-portfolio" element={<Home/>} />
+                <Route path="/lubna-portfolio/resume" element={<Resume />} />
+                <Route path="/lubna-portfolio/contact" element={<Contact />} />
+                <Route path="/lubna-portfolio/portfolio" element={<Portfolio/>} />
               </Routes>
             </Box>
           </BrowserRouter>
