@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/lubna-portfolio/static/css/main.1e7f4e8d.css",
-    "main.js": "/lubna-portfolio/static/js/main.e8454707.js",
+    "main.js": "/lubna-portfolio/static/js/main.409a9ebc.js",
     "static/media/RMS.png": "/lubna-portfolio/static/media/RMS.c299e7f0b509d70f244a.png",
     "static/media/healers.png": "/lubna-portfolio/static/media/healers.11f9c06c1b14ed676f5d.png",
     "static/media/adaptiveOnlineExam.png": "/lubna-portfolio/static/media/adaptiveOnlineExam.79d0d2483a606ced664e.png",
@@ -19,10 +19,10 @@
     "index.html": "/lubna-portfolio/index.html",
     "static/media/linkedIn.svg": "/lubna-portfolio/static/media/linkedIn.cb69387204068df35b06f8f851b3c454.svg",
     "main.1e7f4e8d.css.map": "/lubna-portfolio/static/css/main.1e7f4e8d.css.map",
-    "main.e8454707.js.map": "/lubna-portfolio/static/js/main.e8454707.js.map"
+    "main.409a9ebc.js.map": "/lubna-portfolio/static/js/main.409a9ebc.js.map"
   },
   "entrypoints": [
     "static/css/main.1e7f4e8d.css",
-    "static/js/main.e8454707.js"
+    "static/js/main.409a9ebc.js"
   ]
 }
