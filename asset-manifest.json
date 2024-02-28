@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/lubna-portfolio/static/css/main.1e7f4e8d.css",
+    "main.js": "/lubna-portfolio/static/js/main.a5328fef.js",
+    "static/media/RMS.png": "/lubna-portfolio/static/media/RMS.c299e7f0b509d70f244a.png",
+    "static/media/healers.png": "/lubna-portfolio/static/media/healers.11f9c06c1b14ed676f5d.png",
+    "static/media/adaptiveOnlineExam.png": "/lubna-portfolio/static/media/adaptiveOnlineExam.79d0d2483a606ced664e.png",
+    "static/media/reusable_subsystems.png": "/lubna-portfolio/static/media/reusable_subsystems.7b5738f6ffa8c45c5814.png",
+    "static/media/avatar.jpg": "/lubna-portfolio/static/media/avatar.efc1cd4f8e80aaec6c92.jpg",
+    "static/media/data-analysis.png": "/lubna-portfolio/static/media/data-analysis.4343ab2a901b51933dfd.png",
+    "static/media/react_ui_1.png": "/lubna-portfolio/static/media/react_ui_1.a069bfd6d16d4896e63b.png",
+    "static/media/react_ui_2.png": "/lubna-portfolio/static/media/react_ui_2.4ac8949e150ba6f01c0a.png",
+    "static/media/database.png": "/lubna-portfolio/static/media/database.a6093413c317e1b44ebc.png",
+    "static/media/project-management.png": "/lubna-portfolio/static/media/project-management.f23bcbd2c9a53f0e901a.png",
+    "static/media/address_subsystem.png": "/lubna-portfolio/static/media/address_subsystem.6f983f54c54fc4fb9d7b.png",
+    "static/media/reusable_ui.png": "/lubna-portfolio/static/media/reusable_ui.3bf6fb4b18b1f904676d.png",
+    "static/media/UX_UI.png": "/lubna-portfolio/static/media/UX_UI.1f9bfe89fe9becc2219a.png",
+    "static/media/logo.f607a0fb.svg": "/lubna-portfolio/static/media/logo.f607a0fb.ce14d609044137db2ae3e5b7c6713dff.svg",
+    "index.html": "/lubna-portfolio/index.html",
+    "static/media/linkedIn.svg": "/lubna-portfolio/static/media/linkedIn.cb69387204068df35b06f8f851b3c454.svg",
+    "main.1e7f4e8d.css.map": "/lubna-portfolio/static/css/main.1e7f4e8d.css.map",
+    "main.a5328fef.js.map": "/lubna-portfolio/static/js/main.a5328fef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e7f4e8d.css",
+    "static/js/main.a5328fef.js"
+  ]
+}
