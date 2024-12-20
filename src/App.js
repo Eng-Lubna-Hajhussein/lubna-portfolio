@@ -48,19 +48,19 @@ function App() {
                 }}
               >
                 <Routes>
-                  <Route path="/lubna-portfolio" exact element={<Home />} />
+                  <Route path="/" exact element={<Home />} />
                   <Route
-                    path="/lubna-portfolio/resume"
+                    path="/resume"
                     exact
                     element={<Resume />}
                   />
                   <Route
-                    path="/lubna-portfolio/contact"
+                    path="/contact"
                     exact
                     element={<Contact />}
                   />
                   <Route
-                    path="/lubna-portfolio/portfolio"
+                    path="/portfolio"
                     exact
                     element={<Portfolio />}
                   />
