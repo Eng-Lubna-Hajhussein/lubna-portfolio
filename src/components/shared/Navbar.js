@@ -1,18 +1,23 @@
 import { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Menu,
+  MenuItem,
+  useTheme,
+  useMediaQueryMatch,
+  SvgIcon,
+  Avatar,
+} from "@basetoolkit/ui";
 import { Link, NavLink } from "react-router-dom";
-import { IoHome } from "react-icons/io5";
-import { FaTelegramPlane } from "react-icons/fa";
 import resumeData from "utils/resumeData";
 import CustomeButton from "components/sharedUI/button/CustomeButton";
 
 const Navbar = () => {
+  const theme = useTheme();
+  const isExtraSmallAndDown = useMediaQueryMatch(theme.breakpoints.down("xs"));
   const pages = ["resume", "portfolio", "contact"];
   const { socials } = resumeData;
 
@@ -27,8 +32,14 @@ const Navbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }} className="container-shadow">
-      <AppBar position="static" style={{ overflow: "hidden" }}>
-        <Toolbar>
+      <AppBar
+        position="static"
+        borderRadius={2}
+        px={0}
+        mx={0}
+        style={{ overflow: "hidden" }}
+      >
+        <Toolbar style={{ padding: 0 }} bgcolor="white">
           {/* Homepage Icon */}
           <Box sx={{ mr: 2 }}>
             <NavLink to="/lubna-portfolio">
@@ -38,9 +49,10 @@ const Navbar = () => {
                   height: "100px",
                   width: "70px",
                   fontSize: "20.5px",
+                  borderRadius: 0,
                 }}
               >
-                <IoHome />
+                <SvgIcon icon="home" variant="filled" color="black" />
               </IconButton>
             </NavLink>
           </Box>
@@ -49,9 +61,10 @@ const Navbar = () => {
           <Box
             sx={{
               flexGrow: 5,
-              display: { xs: "none", md: "flex" },
+              // display: { xs: "none", md: "flex" },
               fontFamily: "'Heebo', sans-serif",
             }}
+            display={isExtraSmallAndDown ? "none" : "flex"}
           >
             {pages.map((page, index) => (
               <NavLink
@@ -65,34 +78,31 @@ const Navbar = () => {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: { xs: 12, md: 5 } }} />
+          <Box flexGrow={isExtraSmallAndDown ? 12 : 5} />
           {/* Icons */}
           {Object.keys(socials).map((key, index) => (
-            <IconButton
-              key={index}
-              sx={{
-                fontSize: "16px",
-                display: { xs: "none", lg: "flex" },
+            <a
+              href={socials[key].link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "var(--icon-color)",
+                marginRight: 10,
+                marginLeft: 10,
               }}
             >
-              <a
-                href={socials[key].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color:"var(--icon-color)" }}
+              <Avatar
+                bgcolor="white"
+                variant="rounded"
+                aria-label="recipe"
+                boxShadow={3}
+                sx={{
+                  p: "5px",
+                }}
               >
-                {socials[key]?.img ? (
-                  <Box
-                    component={"img"}
-                    src={socials[key].img}
-                    height={"16px"}
-                    width={"16px"}
-                  />
-                ) : (
-                  socials[key].icon
-                )}
-              </a>
-            </IconButton>
+                {socials[key]?.img}
+              </Avatar>
+            </a>
           ))}
 
           <Box sx={{ flexGrow: 0.5 }} />
@@ -102,7 +112,10 @@ const Navbar = () => {
             to="mailto:hajhussein.lubna@gmail.com"
             style={{ textDecoration: "none" }}
           >
-            <CustomeButton text="HIRE ME" icon={<FaTelegramPlane />} />
+            <CustomeButton
+              text="HIRE ME"
+              icon={<SvgIcon icon="send" variant="filled" fontSize={14} />}
+            />
           </Link>
           <Box sx={{ flexGrow: 0.5 }} />
 
@@ -110,14 +123,14 @@ const Navbar = () => {
           <IconButton
             size="large"
             aria-label="open drawer"
-            sx={{ mr: 2, display: { xs: "flex", md: "none" } }}
+            sx={{ mr: 2, display: isExtraSmallAndDown ? "flex" : "none" }}
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            <MenuIcon />
+            <SvgIcon icon="menu" color="black" />
           </IconButton>
           <Menu
             id="basic-menu"

@@ -1,9 +1,10 @@
 import React from "react";
-import { Button } from "@mui/material";
+import { Button } from "@basetoolkit/ui";
 
 const CustomeButton = ({ text, icon }) => {
   return (
     <Button
+      variant="contained"
       endIcon={
         icon ? (
           <div
@@ -25,21 +26,21 @@ const CustomeButton = ({ text, icon }) => {
         ) : null
       }
       sx={{
-        backgroundColor: "var(--bg-dot)",
-        color: "var(--icon-color)",
-        fontSize: "10px",
-        fontWeight: "bold",
+        backgroundColor: "var(--bg-dot) !important",
+        color: "var(--icon-color) !important",
+        fontSize: "10px !important",
+        fontWeight: "bold !important",
         border: 0,
-        borderRadius: "50px",
-        padding: "1px 16px",
+        borderRadius: "50px !important",
+        padding: "1px 16px !important",
         outline: "none",
-        lineHeight: "35px",
-        letterSpacing: "2px",
+        lineHeight: "35px !important" ,
+        letterSpacing: "2px !important",
         display: "flex",
         justifyContent: "space-around",
         fontFamily: "'Heebo', sans-serif",
         "&:hover": {
-          backgroundColor: "var(--primary-hover-color)"
+          backgroundColor: "var(--primary-hover-color) !important"
         },
       }}
     >

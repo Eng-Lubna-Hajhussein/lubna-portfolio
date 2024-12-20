@@ -1,157 +1,168 @@
-import { Box, Button, TextField } from "@mui/material";
-import { Formik } from "formik";
-import * as yup from "yup";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import {
+  Button,
+  Grid,
+  TextField,
+  useMediaQueryMatch,
+} from "@basetoolkit/ui";
+import { useForm, Controller } from "@basetoolkit/ui/form";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
-const userSchema = yup.object({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  message: yup.string().required("required"),
-});
-
-
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  message: "",
-};
-
 const Contact = () => {
-  const isNonMobile = useMediaQuery("(min-width:600px)");
-
-  const handleFormSubmit = (values) => {
-    console.log(values);
-  };
-
   const form = useRef(null);
+  const isNonMobile = useMediaQueryMatch("(min-width:600px)");
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    if (form.current){
-      emailjs.sendForm('service_s1zyeer', 'template_33a8fbs', form.current, 'r4YwEmscEOLDmoNcm')
-      .then((result) => {
-        console.log(result.text);
-    }, (error) => {
-        console.log(error.text);
-    });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const sendEmail = (data, e) => {
+    if (form.current) {
+      emailjs
+        .sendForm(
+          "service_s1zyeer",
+          "template_33a8fbs",
+          form.current,
+          "r4YwEmscEOLDmoNcm"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
     }
     alert("Thank you, your message has been received. We will reply to you.");
   };
 
   return (
-    <Box m="20px"  style={{padding: "30px"}}>
-
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={userSchema}
+    <Grid container spacing={3} pt={4} style={{ padding: "30px" }}>
+      <form
+        ref={form}
+        onSubmit={handleSubmit(sendEmail)}
+        style={{ width: "100%" }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-        }) => (
-          <form ref={form} onSubmit={sendEmail}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4"},
-                marginTop: "20px",
+        <Grid container spacing={2}>
+          <Grid item xs={12} mt={2} sm={6}>
+            <Controller
+              name="firstName"
+              control={control}
+              rules={{ required: {value:true,message:"First name is required"} }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  fullWidth
+                  variant="standard"
+                  label="First Name"
+                  error={!!errors.firstName}
+                  helperText={errors.firstName?.message}
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} mt={2} sm={6}>
+            <Controller
+              name="lastName"
+              control={control}
+              rules={{ required: {value:true,message:"Last name is required"} }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  fullWidth
+                  variant="standard"
+                  label="Last Name"
+                  error={!!errors.lastName}
+                  helperText={errors.lastName?.message}
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} mt={2}>
+            <Controller
+              name="email"
+              control={control}
+              rules={{
+                required: {value:true,message:"Email is required"},
+                pattern: {
+                  value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                  message: "Invalid email address",
+                },
               }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  fullWidth
+                  variant="standard"
+                  label="Email"
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} mt={2}>
+            <Controller
+              name="contact"
+              control={control}
+              rules={{
+                required: {value:true,message:"Contact number is required"},
+                pattern: {
+                  value: phoneRegExp,
+                  message: "Phone number is not valid",
+                },
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  fullWidth
+                  variant="standard"
+                  label="Contact Number"
+                  error={!!errors.contact}
+                  helperText={errors.contact?.message}
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} mt={2}>
+            <Controller
+              name="message"
+              control={control}
+              rules={{
+                required: { value: true, message: "Message is required" },
+              }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  fullWidth
+                  multiline
+                  rows={4}
+                  variant="standard"
+                  label="Message"
+                  error={!!errors.message?.message}
+                  helperText={errors.message?.message}
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} container justifyContent="end" mt={4}>
+            <Button
+              type="submit"
+              style={{ backgroundColor: "var(--bg-dot)" }}
+              variant="contained"
             >
-              <TextField
-                fullWidth
-                variant="standard"
-                type="text"
-                label="First Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.firstName}
-                name="firstName"
-                error={!!touched.firstName && !!errors.firstName}
-                helperText={touched.firstName && errors.firstName}
-                sx={{ gridColumn: "span 2"}}
-              />
-              <TextField
-                fullWidth
-                variant="standard"
-                type="text"
-                label="Last Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={!!touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-                sx={{ gridColumn: "span 2"}}
-              />
-               <TextField
-                fullWidth
-                variant="standard"
-                type="text"
-                label="Email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4"}}
-              />
-               <TextField
-                fullWidth
-                variant="standard"
-                type="text"
-                label="Contact Number"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.contact}
-                name="contact"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact && errors.contact}
-                sx={{ gridColumn: "span 4"}}
-              />
-               <TextField
-                fullWidth
-                multiline
-                rows={4}
-                variant="standard"
-                type="text"
-                label="Message"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.message}
-                name="message"
-                error={!!touched.message && !!errors.message}
-                helperText={touched.message && errors.message}
-                sx={{ gridColumn: "span 4"}}
-              />
-            </Box>
-            <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" style={{backgroundColor: "var(--bg-dot)",}} variant="contained">
-                Send
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
-    </Box>
+              Send
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </Grid>
   );
 };
 

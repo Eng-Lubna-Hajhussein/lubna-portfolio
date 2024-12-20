@@ -1,29 +1,35 @@
 import "../../index.css";
-import { Box, Typography } from "@mui/material";
-import CustomeTimeline, {
-  CustomeTimelineSeparator,
-} from "components/sharedUI/timeline/CustomeTimeline";
+import {
+  Box,
+  SvgIcon,
+  TimelineDot,
+  Typography,
+  useTheme,
+  TimelineItem,
+  TimelineContent,
+  Timeline,
+  TimelineSeparator,
+  cssInjection
+} from "@basetoolkit/ui";
 import resumeData from "utils/resumeData";
-import { IoGlasses } from "react-icons/io5";
-import { TimelineItem, TimelineContent } from "@mui/lab";
 import CustomeButton from "components/sharedUI/button/CustomeButton";
-import { BiSolidDownload } from "react-icons/bi";
-import styled from "styled-components";
 import img from "assets/avatar.jpg";
 
 /* Styled Components */
-export const Info = styled.span``;
+export const Info = cssInjection("span")``;
 
 const CustomeTimelineItem = ({ text, title, link }) => {
   return (
     <TimelineItem>
-      <CustomeTimelineSeparator />
-      <TimelineContent>
+      <TimelineSeparator>
+        <TimelineDot color="primary" variant="outlined" />
+      </TimelineSeparator>
+      <TimelineContent style={{ marginLeft: 10 }}>
         {link ? (
           <Typography
             sx={{
-              fontSize: { xs: "12.5px", md: "11px" },
-              marginTop: "16.5px",
+              fontSize: "12px",
+              xs: { fontSize: "12.5px" },
             }}
           >
             <Info>
@@ -46,9 +52,8 @@ const CustomeTimelineItem = ({ text, title, link }) => {
         ) : (
           <Typography
             sx={{
-              paddingTop: "5px",
-              fontSize: { xs: "12.5px", md: "11px" },
-              marginTop: "12px",
+              fontSize: "12px",
+              xs: { fontSize: "12.5px" },
             }}
           >
             <Info>{title}: </Info>
@@ -69,7 +74,6 @@ const CustomeTimelineItem = ({ text, title, link }) => {
 
 const Sidebar = () => {
   const { name, job, email, socials, phone } = resumeData;
-
   return (
     <Box
       className="container-shadow"
@@ -113,24 +117,35 @@ const Sidebar = () => {
         <img src={img} alt="lubna hajhussein" height={"250px"} />
       </Box>
 
-      <Box>
-        <CustomeTimeline
-          title=""
-          icon={<IoGlasses />}
-          children={undefined}
-        ></CustomeTimeline>
-        <CustomeTimelineItem title="Name" text={name} link="" />
-        <CustomeTimelineItem title="Job" text={job} link="" />
-        <CustomeTimelineItem title="Email" text={email} link="" />
-        <CustomeTimelineItem title="Phone" text={phone} link="" />
-        {Object.keys(socials).map((key, index) => (
-          <CustomeTimelineItem
-            title={key}
-            text={socials[key].text}
-            link={socials[key].link}
-            key={index}
-          />
-        ))}
+      <Box display="flex" justifyContent="flex-start" mt={-6}>
+        <Timeline
+          style={{
+            alignItems: "flex-start",
+            paddingLeft: "10px",
+          }}
+
+        >
+          <TimelineItem >
+            <TimelineSeparator >
+              <TimelineDot color="primary" style={{padding:"18px"}}>
+                <SvgIcon icon="info" fontSize={15} color="black" variant="filled" />
+              </TimelineDot>
+            </TimelineSeparator>
+            <TimelineContent />
+          </TimelineItem>
+          <CustomeTimelineItem title="Name" text={name} link="" />
+          <CustomeTimelineItem title="Job" text={job} link="" />
+          <CustomeTimelineItem title="Email" text={email} link="" />
+          <CustomeTimelineItem title="Phone" text={phone} link="" />
+          {Object.keys(socials).map((key, index) => (
+            <CustomeTimelineItem
+              title={key}
+              text={socials[key].text}
+              link={socials[key].link}
+              key={index}
+            />
+          ))}
+        </Timeline>
       </Box>
       <Box
         style={{
@@ -146,7 +161,7 @@ const Sidebar = () => {
           rel="noreferrer"
           style={{ textDecoration: "none" }}
         >
-          <CustomeButton text={"Download CV"} icon={<BiSolidDownload />} />
+          <CustomeButton text={"Download CV"} icon={<SvgIcon icon="download" variant="filled" color="black" fontSize={18} />} />
         </a>
       </Box>
     </Box>

@@ -1,62 +1,47 @@
 import React from "react";
-import Timeline from "@mui/lab/Timeline";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineDot from "@mui/lab/TimelineDot";
-import { TimelineContent } from "@mui/lab";
-import { Typography } from "@mui/material";
+import {
+  Typography,
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineConnector,
+  TimelineDot,
+  TimelineContent,
+  useTheme,
+} from "@basetoolkit/ui";
 
-export const CustomeTimelineSeparator = () => (
-  <TimelineSeparator
-    style={{
-      paddingLeft: "24px",
-    }}
-  >
-    <TimelineConnector />
-    <TimelineDot
-      variant="outlined"
-      style={{
-        color: "var(--icon-color)",
-        borderColor: "var(--bg-dot)",
-        padding: "2px",
-      }}
-    />
-  </TimelineSeparator>
-);
-
-const CustomeTimeline = ({
-  title,
-  icon,
-  children,
-}) => {
+const CustomeTimeline = ({ title, icon, children }) => {
+  const theme = useTheme();
   return (
     <Timeline
       style={{
         padding: "0",
+        alignItems: "flex-start",
       }}
     >
       {/* Item Header */}
       <TimelineItem
         style={{
-          margin: "-8px 0 0 11px",
           alignItems: "center",
           textTransform: "capitalize",
         }}
       >
         <TimelineSeparator>
+          <TimelineConnector style={{background:theme.palette.divider}} />
           <TimelineDot
             style={{
-              color: "var(--icon-color)",
-              backgroundColor: "var(--bg-dot)",
+              // color: "var(--icon-color)",
+              // backgroundColor: "var(--bg-dot)",
               fontSize: "20px",
-              padding: "6px",
+              padding: "20px",
             }}
+            variant="filled"
+            color="primary"
           >
             {icon}
           </TimelineDot>
         </TimelineSeparator>
-        <TimelineContent>
+        <TimelineContent style={{ marginLeft: 25 }}>
           <Typography
             variant="h6"
             style={{ fontFamily: "'Heebo', sans-serif" }}

@@ -1,6 +1,5 @@
-import { Grid, Icon, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, TimelineDot } from "@basetoolkit/ui";
 import resumeData from "utils/resumeData";
-import TimelineDot from "@mui/lab/TimelineDot";
 import Header from "components/sharedUI/header/Header";
 
 const Home = () => {
@@ -31,7 +30,7 @@ const Home = () => {
           <Grid item xs={12}>
             <Grid container spacing={3} justifyContent="space-around">
               {resumeData.services.map((service) => (
-                <Grid item xs={12} sm={6} md={5}>
+                <Grid item xs={12} sm={6} md={6} lg={6}>
                   <Box
                     style={{
                       textAlign: "center",
@@ -42,15 +41,6 @@ const Home = () => {
                       backgroundColor: "var(--bg-primary)",
                     }}
                   >
-                    {/* <Icon
-                      style={{
-                        fontSize: "46px",
-                        fontWeight: "300",
-                        color: "var(--service-color)",
-                      }}
-                    >
-                      {service.icon}
-                    </Icon> */}
                     <Box
                       component={"img"}
                       src={service.img}
@@ -85,26 +75,30 @@ const Home = () => {
             container
             spacing={2}
             justifyContent="space-around"
-            style={{ marginTop: "25px" }}
+            style={{ marginTop: "15px" }}
           >
             {resumeData.skills.map((skill) => (
               <Grid
                 item
                 xs={12}
-                sm={5.5}
-                md={2.6}
+                sm={6}
+                md={3}
+                lg={3}
+                >
+                <Box
+                
                 sx={{
-                  padding: "20px",
+                  padding: "20px !important",
                   marginTop: { xs: "15px", md: 0 },
                   borderRadius: "16px",
                   boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.13)",
                 }}
-              >
+                >
                 <Typography
                   variant="h6"
                   style={{
                     textTransform: "uppercase",
-                    fontSize: "14px",
+                    fontSize: "12.5px",
                     fontWeight: "600",
                   }}
                 >
@@ -112,7 +106,7 @@ const Home = () => {
                 </Typography>
                 <Typography variant="body2" style={{ marginTop: "10px" }}>
                   {skill.description.map((element) => (
-                    <Box style={{ display: "flex", alignItems: "center" }}>
+                    <Box style={{ display: "flex", alignItems: "center",marginTop:"5px" }}>
                       <TimelineDot
                         variant="outlined"
                         style={{
@@ -132,6 +126,7 @@ const Home = () => {
                     </Box>
                   ))}
                 </Typography>
+                </Box>
               </Grid>
             ))}
           </Grid>
